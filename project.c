@@ -15,7 +15,7 @@ struct student{
 
 void main(){
     FILE *sth,*trh;
-    sth=fopen("studenthod.dat","ab");
+    sth=fopen("studenthod.dat","rb");
     trh=fopen("teacherhod.dat", "wb");
     struct student s[1000];
     char ch[5], r[50],notice[500];
@@ -33,6 +33,12 @@ void main(){
     scanf("%d", &option);
 
     if(option == 1){
+            i= 0;
+            while(fread(&s[i], sizeof(s[i]), 1, sth) == 1){
+                 i++;
+            }
+            fclose(sth);
+            sth = fopen("studenthod.dat","ab");
         while(1){
             printf("Give name of the student: ");
 
@@ -95,7 +101,7 @@ void main(){
                 fclose(sth);
                 if(isfound == 1){
                     sth=fopen("studenthod.dat","wb");
-                    for(int k = 0; k <=i; k++){
+                    for(int k = 0; k <= i; k++){
                         fwrite(&s[k], sizeof(s[k]), 1, sth);
                     }
                     fclose(sth);
