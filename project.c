@@ -86,14 +86,13 @@ void main(){
 
         i = 0;
        while(fread(&s[i], sizeof(s[i]), 1, sth) == 1){
-            printf("\nThe name of student is: %s", s[i].name);
+
             if(strcmp(r, s[i].roll) == 0){
-                //printf("\n%s", s[i].name);
+                printf("\nThe name of student is: %s\n", s[i].name);
                 isfound = 1;
                 printf("\nNotice: ");
                 gets(notice);
                 strcpy(s[i].notice,notice);
-                break;
             }
             i++;
        }
@@ -101,7 +100,7 @@ void main(){
                 fclose(sth);
                 if(isfound == 1){
                     sth=fopen("studenthod.dat","wb");
-                    for(int k = 0; k <= i; k++){
+                    for(int k = 0; k < i; k++){
                         fwrite(&s[k], sizeof(s[k]), 1, sth);
                     }
                     fclose(sth);
