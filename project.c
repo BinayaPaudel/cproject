@@ -55,9 +55,12 @@ void main(){
             printf("\nGive notice: \n");
             gets(s[i].notice);
             fflush(stdin);
+
+                       fwrite(&s[i],sizeof(s[i]),1,sth);
+
             printf("\nEnter no to terminate: ");
             gets(ch);
-            fwrite(&s[i],sizeof(s[i]),1,sth);
+
                     i++;
             if(strcmp(ch,"no")==0){
                                 break;
@@ -77,7 +80,7 @@ void main(){
 
         i = 0;
        while(fread(&s[i], sizeof(s[i]), 1, sth) == 1){
-
+            printf("\nThe name of student is: %s", s[i].name);
             if(strcmp(r, s[i].roll) == 0){
                 //printf("\n%s", s[i].name);
                 isfound = 1;
@@ -88,10 +91,13 @@ void main(){
             }
             i++;
        }
+
                 fclose(sth);
                 if(isfound == 1){
                     sth=fopen("studenthod.dat","wb");
-                    fwrite(&s,sizeof(s[0]),num,sth);
+                    for(int k = 0; k <=i; k++){
+                        fwrite(&s[k], sizeof(s[k]), 1, sth);
+                    }
                     fclose(sth);
                 }else {
                     printf("\nThere is no student with that roll no\n");
