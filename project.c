@@ -4,7 +4,7 @@
 #include<stdlib.h>
 
 struct student{
-    char roll[20];
+    char roll[50];
     char name [50];
     int room;
     char sex;
@@ -80,14 +80,14 @@ void main(){
             fflush(stdin);
         printf("\nGive roll no of student: ");
         gets(r);
-
+        fclose(sth);
         sth = fopen("studenthod.dat", "rb");
 
 
         i = 0;
        while(fread(&s[i], sizeof(s[i]), 1, sth) == 1){
 
-            if(strcmp(r, s[i].roll) == 0){
+            if(strcmp(r,s[i].roll)==0){
                 printf("\nThe name of student is: %s\n", s[i].name);
                 isfound = 1;
                 printf("\nNotice: ");
