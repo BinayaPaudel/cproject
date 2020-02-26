@@ -16,7 +16,6 @@ struct student{
 void main(){
     FILE *sth,*trh;
     sth=fopen("studenthod.dat","rb");
-    trh=fopen("teacherhod.dat", "wb");
     struct student s[1000];
     char ch[5], r[50],notice[500];
     int i=0,num, option;
