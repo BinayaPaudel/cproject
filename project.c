@@ -20,6 +20,7 @@ void main(){
     struct student s[1000];
     char ch[5], r[50],notice[500];
     int i=0,num, option;
+    int isfound = 0;
 
         TOP:
 
@@ -54,7 +55,7 @@ void main(){
             printf("\nGive notice: \n");
             gets(s[i].notice);
             fflush(stdin);
-            printf("\nEnter no to terminate");
+            printf("\nEnter no to terminate: ");
             gets(ch);
             fwrite(&s[i],sizeof(s[i]),1,sth);
                     i++;
@@ -79,6 +80,7 @@ void main(){
 
             if(strcmp(r, s[i].roll) == 0){
                 //printf("\n%s", s[i].name);
+                isfound = 1;
                 printf("\nNotice: ");
                 gets(notice);
                 strcpy(s[i].notice,notice);
@@ -87,9 +89,14 @@ void main(){
             i++;
        }
                 fclose(sth);
-                sth=fopen("studenthod.dat","wb");
-                  fwrite(&s,sizeof(s[0]),num,sth);
+                if(isfound == 1){
+                    sth=fopen("studenthod.dat","wb");
+                    fwrite(&s,sizeof(s[0]),num,sth);
                     fclose(sth);
+                }else {
+                    printf("\nThere is no student with that roll no\n");
+                }
+
        getch();
 
     }
